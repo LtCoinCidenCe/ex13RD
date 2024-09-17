@@ -9,3 +9,19 @@ CREATE TABLE blogs (
     title TEXT NOT NULL,
     likes INTEGER DEFAULT 0
 );
+
+INSERT INTO
+    blogs (author, url, title)
+VALUES (
+        'Dan Abramov',
+        'nourl',
+        'On let vs const'
+    );
+
+INSERT INTO
+    blogs (author, url, title)
+VALUES (
+        'Laurenz Albe',
+        'nourl',
+        'Gaps in sequences in PostgreSQL'
+    );
