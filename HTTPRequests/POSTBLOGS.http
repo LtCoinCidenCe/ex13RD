@@ -1,0 +1,7 @@
+@BLOGLISTSERVICE = http://localhost:3001
+
+POST {{BLOGLISTSERVICE}}/api/blogs
+Content-Type: application/json
+
+{"author":"Matti Luukainen","url":"https://helsinki.academia.edu/MattiLuukkainen","title":"Fullstack","likes":0}
+###

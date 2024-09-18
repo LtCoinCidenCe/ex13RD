@@ -1,0 +1,3 @@
+@BLOGLISTSERVICE = http://localhost:3001
+
+DELETE {{BLOGLISTSERVICE}}/api/blogs/3

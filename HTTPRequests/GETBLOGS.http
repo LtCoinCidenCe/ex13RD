@@ -1,0 +1,5 @@
+@BLOGLISTSERVICE = http://localhost:3001
+
+GET {{BLOGLISTSERVICE}}/api/blogs
+###
+GET {{BLOGLISTSERVICE}}/api/blogs/1
