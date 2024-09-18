@@ -1,0 +1,6 @@
+@BLOGLISTSERVICE = http://localhost:3001
+
+PUT {{BLOGLISTSERVICE}}/api/blogs/1
+Content-Type: application/json
+
+{"likes":5}

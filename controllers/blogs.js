@@ -25,5 +25,16 @@ blogRouter.delete('/:id', async (req, res) => {
     await blog.destroy();
   return res.status(204).end();
 })
+blogRouter.put('/:id', async (req, res) => {
+  const blog = await Blog.findByPk(req.params.id);
+  if (!blog)
+    return res.status(404).end();
+  if (req.body.likes === undefined)
+    return res.status(400).end();
+  blog.likes = req.body.likes;
+
+  await blog.save();
+  return res.json(blog);
+})
 
 module.exports = blogRouter;
