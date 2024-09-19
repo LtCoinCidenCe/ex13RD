@@ -47,7 +47,8 @@ blogRouter.get('/', async (req, res) => {
     attributes: {
       exclude: ['userId'],
     },
-    where
+    where,
+    order: [['likes', 'DESC']]
   });
   // console.log(JSON.stringify(blogs, null, 2))
   return res.json(blogs)
