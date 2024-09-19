@@ -1,0 +1,4 @@
+@BLOGLISTSERVICE = http://localhost:3001
+
+DELETE  {{BLOGLISTSERVICE}}/api/blogs/11
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZnhlZkBmb2R3LmNvbSIsImlhdCI6MTcyNjc0ODY4OCwiZXhwIjoxNzI2NzQ5NTg4fQ.tn8xl_JrRupwvjBio50-ASe4-iAnMt4vtNrX1ox3Dmc

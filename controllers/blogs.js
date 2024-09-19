@@ -33,10 +33,19 @@ blogRouter.post('/', tokenExtractor, async (req, res) => {
   return res.json(newblog);
 })
 
-blogRouter.delete('/:id', async (req, res) => {
+blogRouter.delete('/:id', tokenExtractor, async (req, res) => {
+  const user = await User.findByPk(req.decodedToken.id);
+  if (user === null)
+    return res.status(401).json({ message: 'bad user' })
+
   const blog = await Blog.findByPk(req.params.id);
-  if (blog)
-    await blog.destroy();
+  if (blog === null) {
+    return res.status(204).end();
+  }
+  if (blog.userId !== user.id) {
+    return res.status(401).json({ message: 'unauthorized user' })
+  }
+  await blog.destroy();
   return res.status(204).end();
 })
 
