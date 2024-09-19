@@ -1,6 +1,5 @@
 const express = require("express");
-const { User } = require("../models");
-const { SECRET } = require("../util/config");
+const { User, Blog } = require("../models");
 const crypto = require('node:crypto');
 
 const userRouter = express.Router();
@@ -10,6 +9,12 @@ userRouter.get('/', async (req, res) => {
     attributes: {
       exclude: ['password'],
     },
+    include: {
+      model: Blog,
+      attributes: {
+        exclude: ['userId'],
+      }
+    }
   });
   res.json(users);
 })

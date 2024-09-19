@@ -20,7 +20,17 @@ const tokenExtractor = async (req, res, next) => {
 }
 
 blogRouter.get('/', async (req, res) => {
-  const blogs = await Blog.findAll();
+  const blogs = await Blog.findAll({
+    include: {
+      model: User,
+      attributes: {
+        exclude: ['password'],
+      },
+    },
+    attributes: {
+      exclude: ['userId'],
+    },
+  });
   // console.log(JSON.stringify(blogs, null, 2))
   return res.json(blogs)
 })
