@@ -1,0 +1,16 @@
+@BLOGLISTSERVICE = http://localhost:3001
+
+POST {{BLOGLISTSERVICE}}/api/users
+Content-Type: application/json
+
+{"username":"defaulUser","name":"Display Name","password":"aPassword"}
+###
+POST {{BLOGLISTSERVICE}}/api/users
+Content-Type: application/json
+
+{"username":"secondUser","name":"DisplayName2","password":""}
+###
+POST {{BLOGLISTSERVICE}}/api/users
+Content-Type: application/json
+
+{"username":"ajsi","name":"AJSI","password":"ttttes"}
