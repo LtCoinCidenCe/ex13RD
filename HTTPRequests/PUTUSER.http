@@ -1,6 +1,6 @@
 @BLOGLISTSERVICE = http://localhost:3001
 
-PUT {{BLOGLISTSERVICE}}/api/users/defaultUser
+PUT {{BLOGLISTSERVICE}}/api/users/qi@fodw.com
 Content-Type: application/json
 
-{"username":"changedUser"}
+{"username":"sfxef@fodw.com"}
