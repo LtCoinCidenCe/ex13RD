@@ -2,4 +2,4 @@
 
 GET {{BLOGLISTSERVICE}}/api/blogs
 ###
-GET {{BLOGLISTSERVICE}}/api/blogs?search=po
+GET {{BLOGLISTSERVICE}}/api/blogs?search=SQl

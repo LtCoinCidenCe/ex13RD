@@ -22,11 +22,21 @@ const tokenExtractor = async (req, res, next) => {
 
 blogRouter.get('/', async (req, res) => {
   const where = {};
-  if (req.query.search) {
-    where.title = {
-      [Op.iLike]: `%${req.query.search}%`,
+  const searchFilter = [{
+    title: {
+      [Op.iLike]: `%${req.query.search}%`
     }
+  },
+  {
+    author: {
+      [Op.iLike]: `%${req.query.search}%`
+    }
+  }]
+  if (req.query.search) {
+    where[Op.or] = searchFilter
   }
+  // console.log(where); // symbol trick
+
   const blogs = await Blog.findAll({
     include: {
       model: User,
