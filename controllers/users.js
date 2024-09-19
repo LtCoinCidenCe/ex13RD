@@ -18,7 +18,7 @@ userRouter.post('/', async (req, res) => {
   const user = new User(req.body);
   await user.validate();
   if (user.password.length < 5)
-    return res.status(400).json({ error: 'password too short' });
+    return res.status(400).json({ message: 'password too short' });
   const passwordHash = crypto.hash('sha256', user.password);
   user.password = passwordHash;
   await user.save();

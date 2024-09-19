@@ -1,7 +1,23 @@
 const express = require("express");
-const { Blog } = require("../models");
+const { Blog, User } = require("../models");
+const jsonwebtoken = require("jsonwebtoken");
+const { SECRET } = require("../util/config");
 
 const blogRouter = express.Router();
+
+const tokenExtractor = async (req, res, next) => {
+  const authorization = req.get('Authorization');
+  if (!(authorization && authorization.toLowerCase().startsWith('bearer '))) {
+    return res.status(401).json({ message: 'token missing' });
+  }
+  try {
+    req.decodedToken = jsonwebtoken.verify(authorization.substring(7), SECRET);
+  } catch (error) {
+    return res.status(401).json({ message: 'token invalid' });
+  }
+
+  next()
+}
 
 blogRouter.get('/', async (req, res) => {
   const blogs = await Blog.findAll();
@@ -9,8 +25,11 @@ blogRouter.get('/', async (req, res) => {
   return res.json(blogs)
 })
 
-blogRouter.post('/', async (req, res, next) => {
-  const newblog = await Blog.create(req.body);
+blogRouter.post('/', tokenExtractor, async (req, res) => {
+  const user = await User.findByPk(req.decodedToken.id);
+  if (user === null)
+    return res.status(401).json({ message: 'bad user' })
+  const newblog = await Blog.create({ ...req.body, userId: user.id });
   return res.json(newblog);
 })
 
@@ -26,7 +45,7 @@ blogRouter.put('/:id', async (req, res) => {
   if (!blog)
     return res.status(404).end();
   if (req.body.likes === undefined)
-    return res.status(400).json({message:'likes number missing'});
+    return res.status(400).json({ message: 'likes number missing' });
   blog.likes = req.body.likes;
 
   await blog.save();

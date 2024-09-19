@@ -2,6 +2,7 @@
 
 POST {{BLOGLISTSERVICE}}/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJhanNpIiwiaWF0IjoxNzI2NzQxMDAwLCJleHAiOjE3MjY3NDE5MDB9.vWMsAwBXuli7K5LxmnOYlpkIyiuyKIfAjmH61H1K99s
 
 {"author":"Matti Luukainen","url":"https://helsinki.academia.edu/MattiLuukkainen","title":"Fullstack","likes":0}
 ###

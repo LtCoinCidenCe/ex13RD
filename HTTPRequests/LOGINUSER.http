@@ -1,0 +1,6 @@
+@BLOGLISTSERVICE = http://localhost:3001
+
+POST {{BLOGLISTSERVICE}}/api/login
+Content-Type: application/json
+
+{"username":"sfxef@fodw.com","password":"aPassword"}
