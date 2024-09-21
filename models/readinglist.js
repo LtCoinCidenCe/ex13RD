@@ -26,7 +26,8 @@ ReadingList.init({
 }, {
   sequelize,
   underscored: 'true',
-  modelName: 'readingList',
+  modelName: 'readinglist',
+  freezeTableName: true
 })
 
 module.exports = ReadingList

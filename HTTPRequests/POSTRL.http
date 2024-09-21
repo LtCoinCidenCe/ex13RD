@@ -1,0 +1,6 @@
+@BLOGLISTSERVICE = http://localhost:3001
+
+POST {{BLOGLISTSERVICE}}/api/readinglist
+Content-Type: application/json
+
+{"blogId":3,"userId":1}
