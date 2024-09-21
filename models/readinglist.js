@@ -22,6 +22,10 @@ ReadingList.init({
     type: DataTypes.CHAR(20),
     allowNull: false,
     defaultValue: 'unread',
+    get() {
+      const value = this.getDataValue('state')
+      return value.trim()
+    }
   }
 }, {
   sequelize,
