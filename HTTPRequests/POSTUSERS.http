@@ -3,14 +3,14 @@
 POST {{BLOGLISTSERVICE}}/api/users
 Content-Type: application/json
 
-{"username":"defaulUser","name":"Display Name","password":"aPassword"}
+{"username":"defaul@User.com","name":"Display Name","password":"aPassword"}
 ###
 POST {{BLOGLISTSERVICE}}/api/users
 Content-Type: application/json
 
-{"username":"secondUser","name":"DisplayName2","password":""}
+{"username":"second@User.com","name":"DisplayName2","password":"aaais"}
 ###
 POST {{BLOGLISTSERVICE}}/api/users
 Content-Type: application/json
 
-{"username":"ajsi","name":"AJSI","password":"ttttes"}
+{"username":"ajsi@Gust.com","name":"AJSI","password":"ttttes"}

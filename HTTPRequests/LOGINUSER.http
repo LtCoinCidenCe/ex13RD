@@ -3,4 +3,4 @@
 POST {{BLOGLISTSERVICE}}/api/login
 Content-Type: application/json
 
-{"username":"sfxef@fodw.com","password":"aPassword"}
+{"username":"second@User.com","password":"aaais"}
