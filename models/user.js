@@ -13,7 +13,7 @@ User.init({
     unique: true,
     allowNull: false,
     validate: {
-      isEmail: true
+      isEmail: true,
     }
   },
   name: {
