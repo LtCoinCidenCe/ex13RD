@@ -1,3 +1,20 @@
+const jsonwebtoken = require("jsonwebtoken");
+const { SECRET } = require("./config");
+
+const tokenExtractor = async (req, res, next) => {
+  const authorization = req.get('Authorization');
+  if (!(authorization && authorization.toLowerCase().startsWith('bearer '))) {
+    return res.status(401).json({ message: 'token missing' });
+  }
+  try {
+    req.decodedToken = jsonwebtoken.verify(authorization.substring(7), SECRET);
+  } catch (error) {
+    return res.status(401).json({ message: 'token invalid' });
+  }
+
+  next()
+}
+
 const errorHandler = (error, req, res, next) => {
   console.error('error:', error, '\n\n\n\n')
 
@@ -11,4 +28,4 @@ const errorHandler = (error, req, res, next) => {
   next(error)
 }
 
-module.exports = { errorHandler }
+module.exports = { errorHandler, tokenExtractor }

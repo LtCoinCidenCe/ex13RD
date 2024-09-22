@@ -1,0 +1,8 @@
+@BLOGLISTSERVICE = http://localhost:3001
+
+PUT {{BLOGLISTSERVICE}}/api/readinglist/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkZWZhdWxAVXNlci5jb20iLCJpYXQiOjE3MjY5ODkwNDEsImV4cCI6MTcyNjk4OTk0MX0.z6EKKOf5zeySNzMIvAoN0pLC0tORFNYSLoNfjN43HA0
+
+{"read":true}
+###
