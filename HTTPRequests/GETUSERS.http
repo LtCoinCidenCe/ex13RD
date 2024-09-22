@@ -3,3 +3,5 @@
 GET {{BLOGLISTSERVICE}}/api/users
 ###
 GET {{BLOGLISTSERVICE}}/api/users/1
+###
+GET {{BLOGLISTSERVICE}}/api/users/1?read=false

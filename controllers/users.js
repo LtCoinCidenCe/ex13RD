@@ -20,6 +20,14 @@ userRouter.get('/', async (req, res) => {
 })
 
 userRouter.get('/:id', async (req, res) => {
+  const isRead = req.query.read;
+  const readinglistWhere = {};
+  if (isRead) {
+    if (isRead === 'true')
+      readinglistWhere.state = 'done'
+    else if (isRead === 'false')
+      readinglistWhere.state = 'unread'
+  }
   const user = await User.findByPk(req.params.id, {
     attributes: {
       exclude: ['id', 'createdAt', 'updatedAt', 'password'],
@@ -32,6 +40,7 @@ userRouter.get('/:id', async (req, res) => {
       },
       through: {
         attributes: ['id', 'state'],
+        where: readinglistWhere,
       },
     }
   })
