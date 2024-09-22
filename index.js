@@ -8,12 +8,14 @@ const blogRouter = require('./controllers/blogs');
 const userRouter = require('./controllers/users');
 const authorRouter = require('./controllers/authors');
 const readingListRouter = require('./controllers/readinglist');
+const logoutRouter = require('./controllers/logout');
 
 const app = express()
 app.use(express.json())
 app.use('/api/blogs', blogRouter)
 app.use('/api/users', userRouter)
 app.use('/api/login', loginRouter)
+app.use('/api/logout',logoutRouter)
 app.use('/api/authors', authorRouter)
 app.use('/api/readinglist', readingListRouter)
 app.use(errorHandler)

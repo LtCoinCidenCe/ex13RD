@@ -3,4 +3,14 @@
 POST {{BLOGLISTSERVICE}}/api/login
 Content-Type: application/json
 
+{"username":"defaul@User.com","password":"aPassword"}
+###
+POST {{BLOGLISTSERVICE}}/api/login
+Content-Type: application/json
+
 {"username":"second@User.com","password":"aaais"}
+###
+POST {{BLOGLISTSERVICE}}/api/login
+Content-Type: application/json
+
+{"username":"ajsi@Gust.com","name":"AJSI","password":"ttttes"}

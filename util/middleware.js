@@ -1,5 +1,6 @@
 const jsonwebtoken = require("jsonwebtoken");
 const { SECRET } = require("./config");
+const { Session, User } = require("../models");
 
 const tokenExtractor = async (req, res, next) => {
   const authorization = req.get('Authorization');
@@ -7,8 +8,24 @@ const tokenExtractor = async (req, res, next) => {
     return res.status(401).json({ message: 'token missing' });
   }
   try {
-    req.decodedToken = jsonwebtoken.verify(authorization.substring(7), SECRET);
+    const tokenString = authorization.substring(7);
+    const decodedToken = jsonwebtoken.verify(tokenString, SECRET);
+    const itsSession = await Session.findOne({
+      where: {
+        token: tokenString,
+      },
+    });
+    if (itsSession === null) {
+      return res.status(401).json({ message: 'token revoked' });
+    }
+    const user = await User.findByPk(decodedToken.id);
+    if (user.disabled)
+      return res.status(401).json({ message: 'user disabled, contact admin for information' });
+    req.decodedToken = decodedToken;
   } catch (error) {
+    if (error.name === 'TokenExpiredError') {
+      return res.status(401).json({ message: 'token expired' });
+    }
     return res.status(401).json({ message: 'token invalid' });
   }
 
