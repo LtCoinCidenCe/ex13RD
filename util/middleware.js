@@ -35,6 +35,9 @@ const tokenExtractor = async (req, res, next) => {
 const errorHandler = (error, req, res, next) => {
   console.error('error:', error, '\n\n\n\n')
 
+  if (error.name === 'SequelizeUniqueConstraintError') {
+    return res.status(400).send({ message: error.errors[0].message })
+  }
   if (error.name === 'SequelizeValidationError') {
     return res.status(400).send({ message: error.errors[0].message })
   }
