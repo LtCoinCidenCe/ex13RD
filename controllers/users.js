@@ -32,17 +32,25 @@ userRouter.get('/:id', async (req, res) => {
     attributes: {
       exclude: ['id', 'createdAt', 'updatedAt', 'password'],
     },
-    include: {
-      model: Blog,
-      as: 'readings',
-      attributes: {
-        exclude: ['createdAt', 'updatedAt', 'userId'],
+    include: [
+      {
+        model: Blog,
+        as: 'readings',
+        attributes: {
+          exclude: ['createdAt', 'updatedAt', 'userId'],
+        },
+        through: {
+          attributes: ['id', 'state'],
+          where: readinglistWhere,
+        },
       },
-      through: {
-        attributes: ['id', 'state'],
-        where: readinglistWhere,
-      },
-    }
+      {
+        model: Blog,
+        attributes: {
+          exclude: ['userId'],
+        }
+      }
+    ]
   })
   res.json(user)
 })
